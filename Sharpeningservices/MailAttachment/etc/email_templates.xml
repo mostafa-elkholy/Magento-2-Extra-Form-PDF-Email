@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Email/etc/email_templates.xsd">
+<template id="sharpening_services_email_template" label="Sharpening Services Email Template" file="sharpening_services_email_template.html" type="html" module="Sharpeningservices_MailAttachment" area="frontend"/>
+</config>

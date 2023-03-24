@@ -1,0 +1,1161 @@
+<?php /*<form id="sharpeningservices" name="form-sharpening-services" action="<?php echo $block->getBaseUrl()?>sharpeningservices/index/submit" method="post" enctype="multipart/form-data" data-mage-init='{"validation": {}}'>
+
+    <textarea name="testtemplatepdf" row="5"></textarea>
+
+    <button type="submit" class="submit-btn">Submit</button>
+
+</form> */?>
+
+
+<div class="page-title-wrapper">
+    <div class="page-title">
+        <h1> WARRANTY REPLACEMENT </h1>
+    </div>
+</div>
+
+
+
+
+
+ 
+<style>
+     :root {
+        --primary: #ec2027;
+        --secondary: #333;
+        --errorColor: red;
+        --stepNumber: 3;
+        --wizard-formWidth: 100%;
+        --bgColor: #FFF;
+        --inputBorderColor: lightgray;
+    }
+    
+     ::selection {
+        color: #fff;
+        background: var(--primary);
+    }
+    
+    .wizard-form {
+        background: #fff;
+        text-align: center;
+        border-radius: 5px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .wizard-form .checkbox-input {
+        top: -13px;
+    }
+    
+    .wizard-form header {
+        font-size: 35px;
+        font-weight: 600;
+        margin: 0 0 30px 0;
+    }
+    
+    .wizard-form .form-outer {
+        width: 100%;
+        overflow: hidden;
+ 
+    }
+    
+    .wizard-form .form-outer form {
+        display: flex;
+        width: calc(100% * var(--stepNumber));
+    }
+    
+    .wizard-form .form-outer form .page {
+        width: calc(100% / var(--stepNumber));
+        transition: margin-left 0.3s ease-in-out;
+    }
+    
+    .wizard-form .form-outer form .page .title {
+        text-align: left;
+        font-size: 25px;
+        font-weight: 500;
+    }
+    
+    .wizard-form .form-outer form .page .field {
+        width: var(--wizard-formWidth);
+        margin: 0 0 25px 0;
+        position: relative;
+        text-align: left;
+    }
+
+    .wizard-form .field.btns
+    {
+        display: flex;
+    justify-content: end;
+    margin-top: 50px !important;
+    }
+    
+    .wizard-form form .page .field label {
+        font-weight: 600;
+    }
+    
+    .wizard-form form .page .field .required.invalid-input {
+        border-color: var(--errorColor);
+    }
+    
+    .wizard-form form .page .field select {
+        width: 100%;
+        padding-left: 10px;
+        font-size: 17px;
+        font-weight: 500;
+    }
+    
+    .wizard-form form .page .field button,
+    .wizard-form form .page .field .next {
+        width: fit-content;
+        border: none;
+        height: auto;
+        padding: 10px 21px;
+        float: right;
+        margin-top: 30px;
+        background: var(--secondary);
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: 0.5s ease;
+    }
+    
+    .wizard-form form .page .field button:hover {
+        background: #000;
+    }
+    
+
+    .wizard-form form .page .btns button.prev {
+        margin-right: 3px;
+        font-size: 17px;
+    }
+    
+    .wizard-form form .page .btns .next {
+        margin-left: 3px;
+        padding: 13px 20px;
+    }
+    
+    .wizard-form .progress-bar {
+        display: flex;
+        margin: 40px 0;
+        user-select: none;
+    }
+    
+    .wizard-form .progress-bar .step {
+        text-align: center;
+        width: 100%;
+        position: relative;
+    }
+    
+    .wizard-form .progress-bar .step p {
+        font-weight: 500;
+        font-size: 18px;
+        color: #000;
+        margin-bottom: 8px;
+        font-size: 21px;
+    }
+    
+    .wizard-form .progress-bar .step .bullet {
+        height: 40px;
+        width: 40px;
+        border: 3px solid #000;
+        display: inline-block;
+        border-radius: 50%;
+        position: relative;
+        transition: 0.2s;
+        font-weight: 500;
+        font-size: 26px;
+        line-height: 40px;
+    }
+    
+    .wizard-form .progress-bar .step .bullet.active {
+        border-color: var(--primary);
+        background: var(--primary);
+    }
+    
+    .wizard-form .progress-bar .step .bullet span {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .wizard-form .progress-bar .step .bullet.active span {
+        display: none;
+    }
+    
+    .wizard-form .progress-bar .step .bullet:before,
+    .wizard-form .progress-bar .step .bullet:after {
+        position: absolute;
+        content: "";
+        bottom: 15px;
+        left: 34px;
+        height: 3px;
+        width: 365px;
+        background: #262626;
+    }
+    
+    .wizard-form .progress-bar .step .bullet.active:after {
+        background: var(--primary);
+        transform: scaleX(0);
+        transform-origin: left;
+        animation: animate 0.3s linear forwards;
+    }
+    
+    @keyframes animate {
+        100% {
+            transform: scaleX(1);
+        }
+    }
+    
+    .wizard-form .progress-bar .step:last-child .bullet:before,
+    .wizard-form .progress-bar .step:last-child .bullet:after {
+        display: none;
+    }
+    
+    .wizard-form .progress-bar .step p.active {
+        color: var(--primary);
+        transition: 0.2s linear;
+    }
+    
+    .wizard-form p.active {
+        color: #ec2027 !important
+    }
+    
+    .wizard-form .bullet.active {
+        background: #ec2027 !important;
+    }
+    
+    .wizard-form .bullet.active::before {
+        background: #ec2027 !important;
+    }
+    
+    .wizard-form .progress-bar .step .check {
+        position: absolute;
+        left: 50%;
+        top: 66%;
+        font-size: 19px;
+        transform: translate(-50%, -50%);
+        display: none;
+    }
+    
+    .wizard-form .progress-bar .step .check.active {
+        display: block;
+        color: #fff;
+    }
+    
+    @media (max-width: 1235px) {
+        .wizard-form .progress-bar .step .bullet:before,
+        .wizard-form .progress-bar .step .bullet:after {
+            display: none
+        }
+    }
+    
+    @media screen and (max-width: 660px) {
+        .wizard-form .progress-bar .step p {
+            display: none;
+        }
+        .wizard-form .progress-bar .step .bullet::after,
+        .wizard-form .progress-bar .step .bullet::before {
+            display: none;
+        }
+        .wizard-form .progress-bar .step .bullet {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .wizard-form .progress-bar .step .check {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            font-size: 15px;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+        .wizard-form .step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    
+    @media screen and (max-width: 490px) {
+        .wizard-form {
+            box-sizing: border-box;
+            border-radius: 0;
+        }
+    }
+
+
+
+
+    .select-fav input[type=radio] {
+    display: none;
+}
+
+.select-fav .box {
+    margin: 0;
+    border: none;
+    padding: 10px 0;
+    box-shadow: none;
+
+}
+
+.select-fav input[type=radio]:not(:disabled)~label {
+    cursor: pointer;
+    display: block;
+    box-shadow: 0 0 7px 1px #DDD;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.select-fav label {
+    background: white;
+    box-shadow: 0 0 7px 1px #DDD;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 0;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    background: white;
+    color: black;
+}
+
+
+.select-fav input[type=radio]:checked+label {
+    background:#ec2027;
+    box-shadow: none;
+    display: block;
+    color: white
+}
+
+.select-fav .nav-link,
+.select-fav .nav-link.active {
+    background: none;
+    border: none
+}
+
+.select-fav .nav-link.active .box label {
+    background: #006E29;
+    color: white;
+    border: none;
+    box-shadow: none;
+}
+
+.select-fav input[type=radio]:checked+label::before {
+    color: #FFF;
+    font-family: "FontAwesome";
+    content: "\f00c";
+    font-size: 15px;
+    position: absolute;
+    left: 19px;
+    top: 23px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    background: #c50923;
+    line-height: 40px;
+    border-radius: 50%;
+}
+
+.select-fav .nav-link.active .box label::before {
+    color: #FFF;
+    font-family: "FontAwesome";
+    content: "\f00c";
+    font-size: 15px;
+    position: absolute;
+    right: 19px;
+    top: 20px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    background: #ec2027;
+    line-height: 26px;
+    border-radius: 50%;
+}
+
+.hide-select 
+{
+    display: none;
+}
+
+.additional-information-form 
+{
+    text-align: left;
+}
+
+.additional-information-form h2
+{
+    font-weight: bold;
+    color: #000 !important;
+	font-size: 36px;
+    text-transform: uppercase; 
+}
+
+ .additional-information-form .sub-tit
+{
+    font-weight: bold;
+    color: #000 !important;
+    font-size: 24px;
+}
+
+.additional-information-form h4 
+{
+    font-weight: bold;
+    color: #ec2027 !important;
+    font-size: 30px;
+}
+
+.additional-information-form p
+{
+    color: black;
+    margin-bottom: 20px;
+}
+
+.additional-information-form ul li 
+{
+    color: #555
+}
+
+.additional-information-form .inclide-following
+{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.form-outer input,
+.form-outer select
+{
+    height:50px !important
+}
+
+.form-outer input[type='radio'],
+.form-outer input[type='checkbox']
+
+{
+    height: auto !important;
+}
+
+.bordered-content
+{
+    border: 2px dotted #ec2027;
+    padding: 30px;
+}
+
+/* .page.step-2,.page.step-3
+{
+    height: 0;
+} */
+/* .zero
+{
+    height: 0 !important;
+}
+
+.full
+{
+    height: 100% !important;
+} */
+
+/* .page 
+{
+    display: none;
+} */
+
+/* .page.step-1
+{
+    display: block;
+} */
+
+.before-sending-container {
+    border: dotted 2px #ec2027;
+    margin: 0 0 15px;
+    padding: 15px;
+    background: #f5f5f5;
+    color: red !important;
+}
+.before-sending-container p, .before-sending-container ul li {
+    color: #ec2027 !important;
+}
+.red-color{color: #ec2027 !important;}
+</style>
+ 
+
+<div id="top" class="wizard-form">
+
+    <div class="progress-bar">
+        <div class="step">
+            <p>Customer Information</p>
+            <div class="bullet step1">
+                <span>1</span>
+            </div>
+            <div class="check fa fa-check"></div>
+        </div>
+        <div class="step">
+            <p>Warranty Information</p>
+            <div class="bullet step2">
+                <span>2</span>
+            </div>
+            <div class="check fa fa-check"></div>
+        </div>
+        <div class="step">
+            <p>Confirmation</p>
+            <div class="bullet step3">
+                <span>3</span>
+            </div>
+            <div class="check fa fa-check"></div>
+        </div>
+    </div>
+
+
+    <div class="form-outer">
+
+        <form id="sharpeningservices" name="form-sharpening-services" action="<?php echo $block->getBaseUrl()?>warranty-replacement-form/index/submit" method="post" enctype="multipart/form-data" data-mage-init='{"validation": {}}'>
+
+            <div class="page step-1 slide-page">
+
+                <div class="row">
+
+
+                    <div class="col-md-6">
+                        <div class="form-group field">
+                            <label for="Name">Full Name</label>
+                            <input required type="text" name="name" class="required form-control input-text required-entry" data-validate='{"required":true}'>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group field date">
+                            <label for="Date">Date</label>
+                            <input required class="required form-control input-text date-calender" type="text" id="date-calender" placeholder="mm/dd/yyyy" name="date" data-validate='{"required":true}'>
+<script>
+require(['jquery','mage/translate','mage/calendar'], function ($, $t) {
+
+	var today = new Date();
+	var dd = String(today.getDate()).padStart(2, '0');
+	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	var yyyy = today.getFullYear();
+
+	today = mm + '/' + dd + '/' + yyyy;
+
+	
+      $('#date-calender').calendar({
+        changeMonth: true,
+        changeYear: true,
+        //showButtonPanel: true,
+		//showOn: "both",
+        //currentText: $t('Go Today'),
+        closeText: $t('Close'),
+        showWeek: true,
+		maxDate: today
+        
+      });
+})
+</script>	
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group field">
+                            <label for="Phone">Phone</label>
+                            <input required class="required form-control phone_number_withcode" data-mask="+1 (000) 000-0000" placeholder="xxx-xxx-xxxx" type="text" name="phone" data-validate='{"required":true}'>
+                        </div>
+                    </div>
+                    <?php /*<script src="https://unpkg.com/jquery-input-mask-phone-number@1.0.12/dist/jquery-input-mask-phone-number.js"></script> */?>
+                    <script>
+                        require(['jquery'], function($) {
+                            $(document).ready(function() {
+                                $("div.replacement_additional_information").hide();
+
+                                $("input[name$='replacement_type']").click(function() {
+                                    var replacement_type_val = $(this).val();
+
+                                    $("div.replacement_additional_information").hide();
+                                    if (replacement_type_val == 'Cookware') {
+                                        $("#cookware-replacement").show();
+                                    } else {
+                                        $("#knives-cutlery-replacement").show();
+                                    }
+
+                                });
+                            });
+
+                        });
+
+                        require(['jquery'], function($) {
+                            (function($) {
+                                $.fn.usPhoneFormat = function(options) {
+                                    var params = $.extend({
+                                        format: 'xxx-xxx-xxxx',
+                                        international: false,
+
+                                    }, options);
+
+                                    if (params.format === 'xxx-xxx-xxxx') {
+                                        $(this).bind('paste', function(e) {
+
+                                            e.preventDefault();
+                                            var inputValue = e.originalEvent && e.originalEvent.clipboardData.getData('Text');
+                                            inputValue = inputValue.replace(/\D/g, '');
+                                            if (!$.isNumeric(inputValue)) {
+                                                return false;
+                                            } else {
+                                                if (inputValue.length > 9) {
+                                                    inputValue = String(inputValue.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
+                                                } else {
+                                                    inputValue = String(inputValue.replace(/(\d{3})(?=\d)/g, '$1-'));
+                                                }
+                                                $(this).val(inputValue);
+                                                $(this).val('');
+                                                inputValue = inputValue.substring(0, 12);
+                                                $(this).val(inputValue);
+                                            }
+                                        });
+                                        $(this).on('keydown touchend', function(e) {
+
+                                            e = e || window.event;
+                                            var key = e.which || e.keyCode; // keyCode detection
+                                            var ctrl = e.ctrlKey ? e.ctrlKey : ((key === 17) ? true : false); // ctrl detection
+                                            if (key == 86 && ctrl) { // Ctrl + V Pressed !
+
+                                            } else if (key == 67 && ctrl) { // Ctrl + C Pressed !
+
+                                            } else if (key == 88 && ctrl) { // Ctrl + x Pressed !
+
+                                            } else if (key == 65 && ctrl) { // Ctrl + a Pressed !
+                                                $(this).trigger("paste");
+                                            } else if (e.which != 8 && e.which != 0 && !(e.keyCode >= 96 && e.keyCode <= 105) && !(e.keyCode >= 48 && e.keyCode <= 57)) {
+                                                return false;
+                                            }
+                                            var curchr = this.value.length;
+                                            var curval = $(this).val();
+                                            if (curchr == 3 && e.which != 8 && e.which != 0) {
+                                                $(this).val(curval + "-");
+                                            } else if (curchr == 7 && e.which != 8 && e.which != 0) {
+                                                $(this).val(curval + "-");
+                                            }
+                                            $(this).attr('maxlength', '12');
+                                        });
+
+                                    } else if (params.format === '(xxx) xxx-xxxx') {
+                                        $(this).on('keydown touchend', function(e) {
+
+                                            e = e || window.event;
+                                            var key = e.which || e.keyCode; // keyCode detection
+                                            var ctrl = e.ctrlKey ? e.ctrlKey : ((key === 17) ? true : false); // ctrl detection
+                                            if (key == 86 && ctrl) { // Ctrl + V Pressed !
+
+                                            } else if (key == 67 && ctrl) { // Ctrl + C Pressed !
+
+                                            } else if (key == 88 && ctrl) { //Ctrl + x Pressed
+
+                                            } else if (key == 65 && ctrl) { //Ctrl + a Pressed !
+                                                $(this).trigger("paste");
+                                            } else if (e.which != 8 && e.which != 0 && !(e.keyCode >= 96 && e.keyCode <= 105) && !(e.keyCode >= 48 && e.keyCode <= 57)) {
+                                                return false;
+                                            }
+                                            var curchr = this.value.length;
+                                            var curval = $(this).val();
+                                            if (curchr == 3 && e.which != 8 && e.which != 0) {
+                                                $(this).val('(' + curval + ')' + " ");
+                                            } else if (curchr == 9 && e.which != 8 && e.which != 0) {
+                                                $(this).val(curval + "-");
+                                            }
+                                            $(this).attr('maxlength', '14');
+
+                                        });
+                                        $(this).bind('paste', function(e) {
+
+                                            e.preventDefault();
+                                            var inputValue = e.originalEvent && e.originalEvent.clipboardData.getData('Text');
+                                            inputValue = inputValue.replace(/\D/g, '');
+
+                                            if (!$.isNumeric(inputValue)) {
+                                                return false;
+                                            } else {
+
+                                                if (inputValue.length > 9) {
+                                                    inputValue = String(inputValue.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3"));
+                                                } else if (inputValue.length > 6) {
+                                                    inputValue = String(inputValue.replace(/(\d{3})(\d{3})(?=\d)/g, '($1) $2-'));
+                                                } else if (inputValue.length > 3) {
+                                                    inputValue = String(inputValue.replace(/(\d{3})(?=\d)/g, '($1) '));
+                                                }
+
+                                                $(this).val(inputValue);
+                                                $(this).val('');
+                                                inputValue = inputValue.substring(0, 14);
+                                                $(this).val(inputValue);
+                                            }
+                                        });
+
+                                    }
+
+                                }
+                            }($));
+                            $(document).ready(function() {
+                                //$('.phone_number_withcode').mask('+1 (000) 000-0000');
+
+                                $('.phone_number_withcode').usPhoneFormat();
+
+                            });
+                        });
+                    </script>
+                    <div class="col-md-6">
+                        <div class="form-group field">
+                            <label for="Email">E-mail</label>
+                            <input required class="required form-control" type="email" name="email" data-validate='{"required":true}'>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group field">
+                            <label for="Address">Address</label>
+                            <input required class="required form-control" type="text" name="address" data-validate='{"required":true}'>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group field">
+                            <label for="city">City</label>
+                            <input required class="required form-control" type="text" name="city" data-validate='{"required":true}'>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group field">
+                            <label for="state">State</label>
+                            <input required class="required form-control" type="text" name="state" data-validate='{"required":true}'>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group field">
+                            <label for="zip">Zip</label>
+                            <input required class="required form-control" type="text" name="zip" data-validate='{"required":true}'>
+                        </div>
+                    </div>
+					
+					
+
+                    <div class="col-md-6">
+                        <div class="form-group field date">
+                            <label for="Date">Date of Purchase</label>
+                            <input required class="required form-control input-text date-calender" type="text" placeholder="mm/dd/yyyy" name="date_of_purchase" data-validate='{"required":true}'>
+<script>
+require(['jquery','mage/translate','mage/calendar'], function ($, $t) {
+
+	var today = new Date();
+	var dd = String(today.getDate()).padStart(2, '0');
+	var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+	var yyyy = today.getFullYear();
+
+	today = mm + '/' + dd + '/' + yyyy;
+
+	
+      $('.date-calender').calendar({
+        changeMonth: true,
+        changeYear: true,
+        //showButtonPanel: true,
+		//showOn: "both",
+        //currentText: $t('Go Today'),
+        closeText: $t('Close'),
+        showWeek: true,
+		maxDate: today
+        
+      });
+})
+</script>								
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group field">
+                            <label for="Phone">Place of Purchase Name </label>
+                            <input required class="required form-control" type="text" name="place_of_purchase_name" data-validate='{"required":true}'>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                </div>
+                <div class="field">
+                    <a href="#top" class="next-2 next">Next</a>
+                </div>
+            </div>
+
+            <div class="page step-2 zero">
+
+
+            <!-- <label class="sub-tit">Replacement Type</label> -->
+
+            <div class="row select-fav">
+
+                                    <div class="col-md-6">
+                                        <div class="box">
+                                        <input required type="radio" id="replacement_type2" name="replacement_type" class="required custom-control-input" value='Knives & Cutlery' class="required-entry" data-validate='{"required":true}'>
+                                            <label for="replacement_type2">
+                                      <h2>Knives & Cutlery</h2>
+                                    </label>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="box">
+                                        <input required type="radio" id="replacement_type1" name="replacement_type" class="required custom-control-input" value='Cookware' class="required-entry" data-validate='{"required":true}'>
+                                            <label for="replacement_type1">
+											   <h2>Cookware</h2>
+											 </label>
+
+                                        </div>
+                                    </div>
+  
+                                </div>
+
+<br/><br/>
+                                    <div class="col-md-12">
+                                        <div class="hide-select-removed" id="cookware-content">
+                                            <div class="form-group field">
+                                                <label for="my-input">Number Of Items</label>
+                                                <select required id="number_of_items" class="required form-control number_of_items" name="number_of_items">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                    <div class="col-md-12">
+                        <div class="form-group field">
+                            <label for="my-input">Description Of Damage (Please include a description of how the item was damaged):</label>
+                            <textarea required class="required form-control required-entry" rows="10" type="text" name="description" data-validate='{"required":true}'></textarea>
+                        </div>
+                    </div>
+					
+                    <div class="col-md-12">
+                        <div class="form-group field">
+                            <label>Do you have proof of ownership? </label>
+
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input required="Please fill" type="radio" id="customRadioInline1" name="have_proof_of_ownership" class="required custom-control-input required-entry have_proof_of_ownership" value='Yes' data-validate='{"required":true}'>
+                                <label class="custom-control-label" for="customRadioInline1">Yes</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input required="Please fill" type="radio" id="customRadioInline2" name="have_proof_of_ownership" class="required custom-control-input required-entry have_proof_of_ownership" value='No' data-validate='{"required":true}'>
+                                <label class="custom-control-label" for="customRadioInline2">No</label>
+                            </div>
+                        </div>
+                    </div>
+ 
+
+                    <script>
+					require([
+						'jquery'
+					], function ($) {
+						
+			
+                            $(document).ready(function() {
+								
+       
+
+							   $("input[name='replacement_type']").click(function(){
+									var radioValue = $("input[name='replacement_type']:checked").val();
+									if(radioValue == 'Cookware'){
+										document.getElementById('number_of_items').innerHTML="<option value='1'>1</option><option value='2'>2</option>";
+									}else{
+										document.getElementById('number_of_items').innerHTML="<option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option value='9'>9</option><option value='10'>10</option>";
+									}
+									
+									calculatecost();
+								});								
+								
+								$('#number_of_items').on('change', function (e) {
+									calculatecost();
+								});
+								$('.have_proof_of_ownership').on('change', function (e) {
+									calculatecost();
+								});	
+								
+								
+
+
+
+								
+								
+                            });	
+
+
+
+
+		  
+							function calculatecost(){
+								var amount = 0; 
+								var Prof = getProf();
+								numberOfItems = $('.number_of_items option:selected').val();
+								amount = ( parseInt(numberOfItems) * parseInt(Prof) ) + 15;
+								//alert(amount);
+								if(Prof == 0){
+										//$( "#div_amount_value" ).html( '<p>Please include a check of the $15 To cover the return shipping (GW only use USPS or UPS) & proof of purchase</p>' );	
+										$( "#div_amount_value_confirm" ).html( '<li>Please include a check for $15 to cover the return shipping cost by only to USPS or UPS carriers. Failure to do so delays processing and the replacement of your item(s).</li><li>Proof of Purchase .</li>' );	
+
+										
+								}else{
+									//$( "#div_amount_value" ).html( '<p>Please include a check of the amount $'+amount+' - To cover the return shipping (GW only use USPS or UPS) & No proof of purchase fee</p>' );	
+									$( "#div_amount_value_confirm" ).html( '<li>Please include a check for $'+amount+' to cover the return shipping cost by only to USPS or UPS carriers & No proof of purchase fee. Failure to do so delays processing and the replacement of your item(s).</li>' );				
+								}
+								
+								
+							}
+
+							function getProf(){
+								var getProfValue = $("input[name='have_proof_of_ownership']:checked").val();
+								if(getProfValue){
+									if(getProfValue == 'Yes'){
+										return 0;
+									}else{
+										return 10;
+									}
+									
+								}else{
+									alert('Select: Do you have proof of ownership?');
+									$( ".have_proof_of_ownership" ).focus();
+									return 10;
+								}
+								
+							}
+										
+			
+			
+					});		
+
+	
+
+					</script>
+
+                <div class="field btns">
+                    <button class="prev-2 prev">Previous</button>
+                    <a href="#top" class="next-3 next">Next</a>
+                </div>
+            </div>
+
+            <div class="page step-3 zero">
+            <div class="additional-information-form">
+                <h2 style="text-align: center">Important Warranty Information</h2>
+               
+                    <p class="red-color">A warranty replacement knife request without providing proof of purchase & ownership will require a $10 fee per knife.</p>
+                    <p>Our warranty excludes some types of damages and/or conditions such as those due to age and/or misuse and/or improper treatment. Replacements for items that are no longer available (discontinued) may be made with similar items of equal value,
+                at our option.</p>
+
+                <div class="sub-tit">Manufacturer defects (covered by warranty):</div>
+                <p>Any Knives that have a manufacturing defect will be shipping back to you on our cost. Manufacturer defects include any damages that are observed when receiving the knife. This means as soon as
+                you open the package there are clear damages before first use of product.</p>
+
+
+                <div class="sub-tit">Misuses (not covered by warranty):</div>
+                <p>Any knives that are treated poorly will require an extra fee. Please look at our warranty policy for more details regarding misuse.</p>
+                 <ul>
+                    <li>Putting the knives in the dishwasher</li>
+                    <li>Using the knife wrongly (Example: cutting bone using the wrong knife such as a paring knife, opening a can using our knives,
+throwing the knives, dropping the knives, cutting frozen food, etc.)</li>
+                    <li>Misuse of our knives will require an additional fee.</li>
+                    <li>Please refer to our warranty policy located on our website, www.gunterwilhelm.com, under the FAQ's.</li>
+                 </ul>            
+
+<p><b>Only Gunter Wilhelm Cutlery and Cookware Items purchased directly from Gunter Wilhelm, activities associated with Gunter
+Wilhelm, or by authorized dealers or representatives of Gunter Wilhelm are covered under warranty. Items purchased, from
+3rd party dealers, not operated by or authorized by Gunter Wilhelm will not be covered.</b></p>
+
+<p>We do not replace diamond steel sharpeners and honing steels. Those are wear and tear items and will not be replaced if
+sent to us.</p>
+
+<p>We do not replace normal wear and tear, including without limitation straight-edge and serrated blades that are dull, bent,
+scratched corroded or marked.</p>
+
+<div class="before-sending-container">
+	<p class="inclide-following"><b>Before sending the package to Gunter Wilhelm, please make sure it includes the following:</b></p>
+		<ul id="div_amount_value_confirm">
+                <!--<li>Please include a check for $15 to cover the return shipping cost by only to USPS or UPS carriers. Failure to do so delays processing and the replacement of your item(s).</li>
+                <li>Please include a check of the amount XX - To cover $15 the return shipping (GW only use USPS or UPS) No proof of purchase fee  .</li>
+                <li>Proof of Purchase .</li>-->
+        </ul>
+</div>
+
+
+<div class="bordered-content">            
+<h4>Important Packaging Information  </h4>
+
+<ul>
+                <li><b>Please use bubble wrap and an appropriate sized box/envelope to send over the warrantied knife.</b></li>
+                <li><b>Do not put tape on the pots/pans.</b></li>
+                <li><b>Knives must be cleaned before shipped to us.</b></li>
+                <li><b>A check or prepaid return label back to you.</b></li>
+                <li><b>Secure and safe packaging. <span style="color:#b11113">DO NOT SHIP IN AN ENVELOP.</span></b></li>
+            </ul>
+            </div>
+
+        </div>
+        
+
+
+
+            <!-- <div class="field">
+				<div class="custom-control custom-checkbox">
+					<input required type="checkbox" class="required custom-control-input" id="customCheck1" name="check_prepaied" value="Yes" data-validate='{"required":true}'>
+					<label class="custom-control-label" for="customCheck1"></label>
+				</div>
+
+				<div class="custom-control custom-checkbox">
+					<input required type="checkbox" class="required custom-control-input" id="customCheck2" name="secure_safe" value="Yes" data-validate='{"required":true}'>
+					<label class="custom-control-label" for="customCheck2">Secure and safe packaging. <span style="color:#b11113">DO NOT SHIP IN AN ENVELOP</span></label>
+				</div>
+            </div> -->
+			
+			
+
+                <div class="field btns">
+                    <button class="prev-5 prev">Previous</button>
+                    <button class="submit">Submit</button>
+                </div>
+            </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    initMultiStepForm();
+
+    function initMultiStepForm() {
+        const progressNumber = document.querySelectorAll(".step").length;
+        const slidePage = document.querySelector(".slide-page");
+        const submitBtn = document.querySelector(".submit");
+        const progressText = document.querySelectorAll(".step p");
+        const progressCheck = document.querySelectorAll(".step .check");
+        const bullet = document.querySelectorAll(".step .bullet");
+        const pages = document.querySelectorAll(".page");
+        const nextButtons = document.querySelectorAll(".next");
+        const prevButtons = document.querySelectorAll(".prev");
+        const stepsNumber = pages.length;
+
+        if (progressNumber !== stepsNumber) {
+            console.warn(
+                "Error, number of steps in progress bar do not match number of pages"
+            );
+        }
+
+        document.documentElement.style.setProperty("--stepNumber", stepsNumber);
+
+        let current = 1;
+
+        for (let i = 0; i < nextButtons.length; i++) {
+            nextButtons[i].addEventListener("click", function(event) {
+                event.preventDefault();
+
+                inputsValid = validateInputs(this);
+                // inputsValid = true;
+
+                if (inputsValid) {
+                    slidePage.style.marginLeft = `-${
+                       (100 / stepsNumber) * current
+                   }%`;
+                   //             $(this).addClass("zero");
+//             $(".step-2").removeClass("zero");
+//             $(".step-2").addClass("full");
+//             $(".step-3").addClass("zero"); 
+                    bullet[current - 1].classList.add("active");
+                    progressCheck[current - 1].classList.add("active");
+                    progressText[current - 1].classList.add("active");
+                    current += 1;
+                }
+            });
+        }
+
+        for (let i = 0; i < prevButtons.length; i++) {
+            prevButtons[i].addEventListener("click", function(event) {
+                event.preventDefault();
+                slidePage.style.marginLeft = `-${
+                   (100 / stepsNumber) * (current - 2)
+               }%`;
+                bullet[current - 2].classList.remove("active");
+                progressCheck[current - 2].classList.remove("active");
+                progressText[current - 2].classList.remove("active");
+                current -= 1;
+            });
+        }
+        submitBtn.addEventListener("click", function() {
+            submitBtn.classList.add("active-wg");
+            bullet[current - 1].classList.add("active");
+            progressCheck[current - 1].classList.add("active");
+            progressText[current - 1].classList.add("active");
+            current += 1;
+            /*setTimeout(function() {
+                alert("Your form has been sent successfully");
+                location.reload();
+            }, 800);*/
+        });
+
+        function validateInputs(ths) {
+            let inputsValid = true;
+
+            const inputs =
+                ths.parentElement.parentElement.querySelectorAll(".required");
+            for (let i = 0; i < inputs.length; i++) {
+                const valid = inputs[i].checkValidity();
+                if (!valid) {
+                    inputsValid = false;
+                    inputs[i].classList.add("invalid-input");
+                } else {
+                    inputs[i].classList.remove("invalid-input");
+                }
+            }
+            return inputsValid;
+        }
+    }
+
+
+
+</script>
+
+
+<script>
+    require([
+        'jquery'
+    ], function($) {
+
+
+        $("a[href^='#']").click(function(e) {
+	e.preventDefault();
+	
+	var position = $($(this).attr("href")).offset().top;
+
+	$("body, html").animate({
+		scrollTop: position
+	} /* speed */ );
+});
+
+
+
+
+    });
+</script>

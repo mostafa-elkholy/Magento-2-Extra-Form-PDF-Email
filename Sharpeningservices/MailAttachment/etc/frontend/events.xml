@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch_sharpeningservices_form_index_save">
+        <observer name="sharpeningservices_mailattachment_form_recaptcha" instance="Sharpeningservices\MailAttachment\Observer\Frontend\CustomFormObserver" />
+    </event>
+</config>

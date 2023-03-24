@@ -1,0 +1,93 @@
+<div class="page-title-wrapper">
+    <div class="page-title">
+        <h1> WARRANTY REPLACEMENT SUCCESS</h1>
+    </div>
+</div>
+
+<div style="text-align: center; font-size:24px;">
+
+<p>Thank you for completing your warranty form! </p>
+<p>We appreciate the effort you have taken to ensure that your product is covered.</p> 
+<p>Please download a copy of your form and follow the instructions written on the form when mailing your product back to us. </p>
+<p id="download_123456"></p>
+
+<p style="display:none;" id="counter_321"><b>You will be redirected in <span id="seconds">15</span> seconds.</b></p>
+<?php 
+
+
+//$registry = \Magento\Framework\App\ObjectManager::getInstance()->get(\Magento\Framework\Registry::class)->registry('pdf_download');
+//echo $registry;
+
+//$registry->unregister('pdf_download');
+?>
+
+
+</div>
+<style>
+.message.success {
+    margin: 0 0 9px;
+    padding: 12px 18px 12px 22.5px;
+    display: block;
+    font-size: 2.3rem;
+    background: #e5efe5;
+    color: #006400;
+    padding-left: 45px;
+    position: relative;
+    text-align: center;
+}
+</style>
+<script>
+					require([
+						'jquery'
+					], function ($) {
+						
+			
+                            $(document).ready(function() {
+
+ 
+								  setTimeout(function() {
+										var PDFhref = $("#pdf_download_href").attr('href');
+										document.getElementById('download_123456').innerHTML="Thank you again for taking the time <a href='"+PDFhref+"' target='_blank'>Download Form Here</a>";
+										countdownTimer();
+										$("#counter_321").show();
+								  }, 5000);
+ 						
+
+
+									// Countdown timer for redirecting to another URL after several seconds
+
+									var seconds = 15; // seconds for HTML
+									var foo; // variable for clearInterval() function
+
+									function redirect() {
+										document.location.href = 'https://gunterwilhelm.com/';
+									}
+
+									function updateSecs() {
+										document.getElementById("seconds").innerHTML = seconds;
+										seconds--;
+										if (seconds == -1) {
+											clearInterval(foo);
+											redirect();
+										}
+									}
+
+									function countdownTimer() {
+										foo = setInterval(function () {
+											updateSecs()
+										}, 1000);
+									}
+
+									//
+
+								
+								
+							});
+							
+					});
+
+
+
+
+
+</script>

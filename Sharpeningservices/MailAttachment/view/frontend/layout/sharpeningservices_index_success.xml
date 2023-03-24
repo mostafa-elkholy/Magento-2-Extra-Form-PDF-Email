@@ -1,0 +1,12 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd"> 
+	<head>
+		   <css src="Sharpeningservices_MailAttachment::css/style.css" />
+    </head>
+    <body>
+    <referenceBlock name="content">
+        <block template="Sharpeningservices_MailAttachment::success.phtml" class="Magento\Framework\View\Element\Template" cacheable="false">
+		</block> 
+    </referenceBlock>
+    <referenceBlock name="page.main.title" remove="true" />
+    </body>
+</page>  
